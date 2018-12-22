@@ -2,14 +2,17 @@
   "//": "To use type: npm run watch",
   "name": "ractive-decorators-popper",
   "version": "1.0.0",
-  "description": "A popper.sj decorator for Ractive",
+  "description": "A popper.js decorator for Ractive",
   "main": "dist/ractive-decorators-popper.js",
   "repository": "https://github.com/kouts/ractive-decorators-popper",
   "keywords": [
     "ractive",
     "decorator",
     "popper",
-    "dropdown"
+    "popper.js",
+    "dropdown",
+    "popover",
+    "tooltip"
   ],
   "devDependencies": {
     "@babel/cli": "^7.2.3",
