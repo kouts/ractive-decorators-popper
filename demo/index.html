@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ractive-decorators-popper demo page">
+    <meta name="author" content="kouts">
+
+    <title>ractive-decorators-popper demo page</title>
+
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+        .code-comment {
+            padding-left:20px;
+        }
+        .jumbotron {
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+        .navbar-nav-svg {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: text-top;
+        }
+        .highlight {
+            background-color: #f7f7f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="javascript:;">ractive-decorators-popper</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <!--
+                <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                -->
+            </ul>
+            <form class="form-inline">
+                <a class="nav-link" style="color:#fff;" href="https://github.com/kouts/ractive-decorators-popper" target="_blank" rel="noopener" aria-label="ractive-decorators-popper GitHub">
+                    <svg class="navbar-nav-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 499.36" focusable="false"><title>ractive-decorators-popper at GitHub</title><path d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z" fill="currentColor" fill-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/kouts/ractive-decorators-popper/archive/master.zip" class="btn btn-outline-success">Download</a>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container" id="app"></div>
+
+    <script type="text/template" id="app-template">
+
+        <div class="jumbotron">
+            <h1>ractive-decorators-popper</h1>
+            <p class="lead">A popper.js decorator for Ractive</p>
+            <p class="mb-0">This page includes basic documentation and examples for the ractive-decorators-popper decorator</p>
+            <p>The popper.js decorator is decided with <strong>Bootstrap 4</strong> integration in mind (dropdowns, popovers etc), but it should work fine for other use cases too.</p>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Quick demo</h2>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-4">
+                <label>Dropdown with div &gt; a structure</label>
+                <div class="dropdown mb-2 mb-0-sm" as-popper="{placement: 'bottom-start'}">
+                    <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
+                       Primary <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu" popper>
+                        <a href="javascript:;" class="dropdown-item" on-click="@global.alert('Action')">Action</a>
+                        <a href="javascript:;" class="dropdown-item" on-click="@global.alert('Another action')">Another action</a>
+                        <a href="javascript:;" class="dropdown-item" on-click="@global.alert('Something else here')">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javascript:;" class="dropdown-item" on-click="@global.alert('Separated link')">Separated link</a>
+                        <a href="javascript:;" class="dropdown-item" on-click="@global.alert('Another separated link')">Another separated link</a>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-sm-4">
+                <label>Dropdown with ul &gt; li &gt; a structure</label>
+                <div class="dropdown mb-2 mb-0-sm" as-popper="{placement: 'bottom-start'}">
+                    <button class="btn btn-secondary dropdown-toggle" popper-trigger type="button">
+                        Secondary <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" popper>
+                        <li><a href="javascript:;" class="dropdown-item" on-click="@global.alert('Action')">Action</a></li>
+                        <li><a href="javascript:;" class="dropdown-item" on-click="@global.alert('Another action')">Another action</a></li>
+                        <li><a href="javascript:;" class="dropdown-item" on-click="@global.alert('Something else here')">Something else here</a></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><a href="javascript:;" class="dropdown-item" on-click="@global.alert('Separated link')">Separated link</a></li>
+                        <li><a href="javascript:;" class="dropdown-item" on-click="@global.alert('Another separated link')">Another separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Features at a glance</h2>
+                <ul>
+                    <li>Lightweight, minified version is &lt; <strong>6kb</strong></li>
+                    <li>Features navigation for Bootstrap 4 dropdowns using the arrow keys</li>
+                    <li>Arrows navigation works with both &gt; li &gt; a structure and div &gt; a dropdown structure
+                    <li>Raises events - popper_before_open, popper_open, popper_before_close, popper_close</li>
+                    <li>Popper closeable by clicking anywhere on the screen or by hitting the esc key</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2>Install</h2>
+                <h4 class="pb-2">ractive-decorators-popper is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveDecoratorsPopper)</h4>
+                <h5>ES2015</h5>
+                <pre class="highlight">
+                    <code as-code>
+                        npm install ractive-decorators-popper --save
+                        import RactiveDecoratorsPopper from 'ractive-decorators-popper';
+                    </code>
+                </pre>
+                <h5>Global - download the repo, extract dist/ractive-decorators-popper.min.js and include it in your page</h5>
+                <pre class="highlight">
+                    <code>
+                        &lt;script type="text/javascript" src="ractive-decorators-popper.min.js"&gt;&lt;/script&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2>Basic usage</h2>
+                <h5>Make ractive-decorators-popper available to all Ractive instances</h5>
+                <pre class="highlight">
+                    <code as-code>
+                        Ractive.decorators.popper = RactiveDecoratorsPopper;
+                    </code>
+                </pre>
+
+                <h5>or add the ractive-decorators-popper to your Ractive instance</h5>
+                <pre class="highlight">
+                    <code as-code>
+                        var ractive = new Ractive({
+                            ...
+                            decorators: {
+                                popper: RactiveDecoratorsPopper
+                            },
+                            data: {
+                                ...
+                            }
+                        });
+                    </code>
+                </pre>
+
+                <h5>then in your template</h5>
+                <pre class="highlight">
+                    <code as-code>
+                        <!--
+                            <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+                        -->
+                    </code>
+                </pre>
+
+                <h5>Example</h5>
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_1', true)">Open modal</button>
+
+        </div>
+    </div>
+
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Prevent &lt;body&gt; from scrolling</h2>
+          <p>A common need when a modal window is open, is to prevent the &lt;body&gt; of the underlying page from scrolling.<br />
+          ractive-decorators-popper does not impose any specific scroll behavior on the &lt;body&gt; by default. This functionality is provided as a separate <a href="../plugins/ractive-decorators-popper-scroll-lock.js" target="_blank">plugin</a>.</p>
+          <h5>Include <a href="../plugins/ractive-decorators-popper-scroll-lock.js" target="_blank">ractive-decorators-popper-scroll-lock.js</a> plugin, to prevent &lt;body&gt; from scrolling when a modal is open</h5>
+          <ol>
+            <li>When <a href="../plugins/ractive-decorators-popper-scroll-lock.js" target="_blank">ractive-decorators-popper-scroll-lock.js</a> is included, all modals when opened prevent &lt;body&gt; from scrolling <strong>by default</strong>.</li>
+            <li>When the modal is closed, the &lt;body&gt; scrolling behavior is restored.</li>
+            <li>To override the "scroll locking" behavior for any modal, you can set <span class="badge badge-light font-weight-normal" style="font-size: 1rem;">body_lock_scroll="false"</span></li>
+          </ol>
+
+          <div class="alert alert-info" role="alert">
+            <strong>Info:</strong> This demo page includes the <a href="../plugins/ractive-decorators-popper-scroll-lock.js" target="_blank">ractive-decorators-popper-scroll-lock.js</a> plugin.
+          </div>
+
+        </div>
+      </div>      
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Events</h2>
+          <p>ractive-decorators-popper exposes 5 component events - beforeOpen, opening, afterOpen, beforeClose, afterClose</p>
+          <pre class="highlight">
+            <code as-code>
+            <!--
+
+            -->
+            </code>
+          </pre>
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_2', true)">Open modal</button>
+          <callbacks-modal title="Events modal" basedon="{{open_modal_2}}">
+            <p>This is a modal that has all events attached</p>
+          </callbacks-modal>
+        </div>
+      </div>
+      <div class="row mb-3"></div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">CSS animations</h2>
+          <p>
+            ractive-decorators-popper comes with a fade-in / fade-out animation (250ms duration by default) for the modal and the modal backdrop.<br />
+            It is also designed so that you can put you favorite animations using any CSS animation framework like <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="http://anicollection.github.io" target="_blank">Anicollection</a> etc
+          </p>
+          <p>
+            You can define your base animation class (usually this is the "animated" class) by setting the "base_anim_class" variable.<br />
+            Then define your intro and outro animation classes for the modal, by defining "in_class" and "out_class" variables accordingly.
+          </p>
+          <p>
+            You can also set the intro and outro animation class for the modal backdrop, by defining "bg_in_class" and "bg_out_class" variables accordingly.<br />
+          </p>
+
+          <h5>Example using Animate.css</h5>
+          <form class="mb-2">
+            <div class="row">
+              <div class="col form-group">
+                <label>Modal intro</label>
+                <select class="form-control" value="{{modal_animated_in_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Modal outro</label>
+                <select class="form-control" value="{{modal_animated_out_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Overlay intro</label>
+                <select class="form-control" value="{{overlay_animated_in_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+              <div class="col form-group">
+                <label>Overlay outro</label>
+                <select class="form-control" value="{{overlay_animated_out_class}}">
+                  {{>animation_options}}
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_animated', true)">Open modal</button>
+              </div>
+            </div>
+          </form>
+
+          {{#partial animation_options}}
+            <optgroup label="Attention Seekers">
+              {{#each lovs.attention_seekers}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Bouncing Entrances">
+              {{#each lovs.bouncing_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Bouncing Exits">
+              {{#each lovs.bouncing_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Fading Entrances">
+              {{#each lovs.fading_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Fading Exits">
+              {{#each lovs.fading_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Flippers">
+              {{#each lovs.flippers}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Lightspeed">
+              {{#each lovs.lightspeed}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Rotating Entrances">
+              {{#each lovs.rotating_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Rotating Exits">
+              {{#each lovs.rotating_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Sliding Entrances">
+              {{#each lovs.sliding_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Sliding Exits">
+              {{#each lovs.sliding_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Zoom Entrances">
+              {{#each lovs.zoom_entrances}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Zoom Exits">
+              {{#each lovs.zoom_exits}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+            <optgroup label="Specials">
+              {{#each lovs.specials}}
+                <option value="{{value}}">{{text}}</option>
+              {{/each}}
+            </optgroup>
+          {{/partial}}
+
+        </div>
+      </div>
+      <div class="row mb-3"></div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Options</h2>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Description</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>basedon</td>
+                  <td>Opens and closes the modal window</td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>live</td>
+                  <td>Controls whether the modal renders dynamically or stays hidden in the DOM<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>Boolean</td>
+                  <td>false</td>
+                </tr>
+                <tr>
+                  <td>appendto</td>
+                  <td>Element (selector) in which the modal is to be inserted to, e.g 'body'<br />
+                    <strong>This option should not be changed at runtime</strong>
+                  </td>
+                  <td>String</td>
+                  <td>Ractive root instance el</td>
+                </tr>
+                <tr>
+                  <td>class</td>
+                  <td>Extra css classes for the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>bg_class</td>
+                  <td>Extra css classes for the modal backdrop</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>base_anim_class</td>
+                  <td>Your animation framework's base class e.g "animate". This applies to the modal and the modal backdrop elements.</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>in_class</td>
+                  <td>Animation class for the modal intro</td>
+                  <td>String</td>
+                  <td>rm-fadeIn</td>
+                </tr>
+                <tr>
+                  <td>out_class</td>
+                  <td>Animation class for the modal outro</td>
+                  <td>String</td>
+                  <td>rm-fadeOut</td>
+                </tr>
+                <tr>
+                  <td>bg_in_class</td>
+                  <td>Animation class for the modal backdrop intro</td>
+                  <td>String</td>
+                  <td>rm-fadeIn</td>
+                </tr>
+                <tr>
+                  <td>bg_out_class</td>
+                  <td>Animation class for the modal backdrop outro</td>
+                  <td>String</td>
+                  <td>rm-fadeOut</td>
+                </tr>                
+                <tr>
+                  <td>style</td>
+                  <td>Extra css styles for the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>title</td>
+                  <td>The title of the modal element</td>
+                  <td>String</td>
+                  <td><em>Empty</em></td>
+                </tr>
+                <tr>
+                  <td>enableclose</td>
+                  <td>Controls whether the modal window is closable or not</td>
+                  <td>Boolean</td>
+                  <td>true</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          <h5>Example</h5>
+          <button type="button" class="btn btn-primary" on-click="@this.set('open_modal_3', true)">Open modal</button>
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Focus management</h2>
+          <h5>ractive-decorators-popper comes with integrated focus management - How it works</h5>
+          <ol>
+            <li>When the modal opens it moves the keyboard focus from the triggering element (link or button) to the modal window (or an element with an autofocus attribute within it)</li>
+            <li>It keeps the keyboard focus within the modal dialog until the dialog is closed</li>
+            <li>It moves the focus back to the triggering element when the user closes the dialog.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="row mb-3"></div>
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <h2 class="pb-2">Changelog</h2>
+
+          <h5>version 1.0.0</h5>
+          <ul>
+            <li>Initial release</li>
+          </ul>
+          
+        </div>
+      </div>
+
+    </script>
+
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="../dist/ractive-decorators-popper.js"></script>
+
+    <script type="text/javascript">
+
+      function findComments(el) {
+        var arr = [];
+        for(var i = 0; i < el.childNodes.length; i++) {
+          var node = el.childNodes[i];
+          if(node.nodeType === 8) {
+            arr.push(node);
+          } else {
+            arr.push.apply(arr, findComments(node));
+          }
+        }
+        return arr;
+      };
+
+      function esc(string){
+        var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
+        return String(string).replace(/[&<>"'\/]/g, function(s){
+          return entityMap[s];
+        });
+      }
+
+      Ractive.decorators.code = function(node){
+        var comments = findComments(node);
+        for (var i = 0; i < comments.length; i++) {
+          var temp = document.createElement('div');
+          temp.classList.add('code-comment');
+          temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
+          node.replaceChild(temp, comments[i]);
+        };
+        return {
+          teardown: function(){
+          }
+        }        
+      }
+
+      Ractive.decorators.popper = RactiveDecoratorsPopper;
+
+      var ractive = new Ractive({
+        stripComments: false,
+        target: '#app',
+        template: '#app-template',
+        data: {
+        }
+      });
+    </script>
+
+  </body>
+</html>
