@@ -20,6 +20,9 @@
         body {
             padding-top: 5rem;
         }
+        .mb40 {
+            margin-bottom: 40px;
+        }
         .code-comment {
             padding-left:20px;
         }
@@ -80,7 +83,7 @@
             </div>
         </div>
 
-        <div class="row mb-4">
+        <div class="row mb40">
             <div class="col-sm-4">
                 <label>Dropdown with div &gt; a structure</label>
                 <div class="dropdown mb-2 mb-0-sm" as-popper="{placement: 'bottom-start'}">
@@ -117,7 +120,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Features at a glance</h2>
                 <ul>
@@ -130,7 +133,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Install</h2>
                 <h4 class="pb-2">ractive-decorators-popper requires of course <a href="https://popper.js.org/" target="_blank">popper.js</a> to be present.</h4>
@@ -151,7 +154,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Basic usage</h2>
                 <h5>Make ractive-decorators-popper available to all Ractive instances</h5>
@@ -223,7 +226,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Events</h2>
                 <p>ractive-decorators-popper raises 4 events on the <span class="badge badge-light" style="font-size: 1rem">popper</span> element - popper_before_open, popper_open, popper_before_close, popper_close</p>
@@ -275,145 +278,147 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3"></div>
 
-        <h5>Bootstrap Popover Example</h5>
-        <div class="alert alert-info" role="alert">
-            <p class="mb-0">
-                For Bootstrap popover some additional CSS styles are needed.<br />
-                You also need to set the popover option to true and the modifiers.arrow.element to ".arrow", as shown in the example below.
-            </p>
+        <div class="row mb40">
+            <div class="col-sm-12">
+                <h2 class="mb-3">Bootstrap Popover Example</h2>
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-0">
+                        For Bootstrap popover some additional CSS styles are needed.<br />
+                        You also need to set the popover option to true and the modifiers.arrow.element to ".arrow", as shown in the example below.
+                    </p>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-secondary" popper-trigger>
+                                Popover on top
+                            </button>
+                            <div class="popover bs-popover-top" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Popover title
+                                </h3>
+                                <div class="popover-body">
+                                    And here's some amazing content. It's very engaging. Right?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div as-popper="{placement: 'right', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-secondary" popper-trigger>
+                                Popover on right
+                            </button>
+                            <div class="popover bs-popover-right" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Popover title
+                                </h3>
+                                <div class="popover-body">
+                                    And here's some amazing content. It's very engaging. Right?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div as-popper="{placement: 'bottom', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-secondary" popper-trigger>
+                                Popover on bottom
+                            </button>
+                            <div class="popover bs-popover-bottom" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Popover title
+                                </h3>
+                                <div class="popover-body">
+                                    And here's some amazing content. It's very engaging. Right?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div as-popper="{placement: 'left', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-secondary" popper-trigger>
+                                Popover on left
+                            </button>
+                            <div class="popover bs-popover-left" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Popover title
+                                </h3>
+                                <div class="popover-body">
+                                    And here's some amazing content. It's very engaging. Right?
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div as-popper="{placement: 'top', popover: true, click_to_close: false, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-lg btn-danger" popper-trigger>
+                                Popover that doesn't close when clicked inside
+                            </button>
+                            <div class="popover bs-popover-top" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Click inside me
+                                </h3>
+                                <div class="popover-body">
+                                    <p>
+                                        See? Nothing happens!
+                                    </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper.
+                                    </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper. Duis rutrum, est non volutpat tempus, tortor urna vulputate felis, vel luctus felis quam at justo.
+                                    </p>
+                                    <button type="button" class="btn btn-sm btn-secondary" on-click="@global.alert('Clicked!')">Click me!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre>
+                    <code class="language-html" as-code>
+                    <!--
+                    <style>
+                        .popover[popper] {display: none;}
+                        .popover[popper].show {display: block;}
+                    </style>
+                    -->
+                    </code>
+                </pre>
+
+                <pre>
+                    <code class="language-html" as-code>
+                        <!--
+                        <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                            <button type="button" class="btn btn-secondary" popper-trigger>
+                                Popover on top
+                            </button>
+                            <div class="popover bs-popover-top" role="tooltip" popper>
+                                <div class="arrow"></div>
+                                <h3 class="popover-header">
+                                    Popover title
+                                </h3>
+                                <div class="popover-body">
+                                    And here's some amazing content. It's very engaging. Right?
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </code>
+                </pre>
+            </div>
         </div>
-        <div class="row mb-3">
-            <div class="col">
-                <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-secondary" popper-trigger>
-                        Popover on top
-                    </button>
-                    <div class="popover bs-popover-top" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Popover title
-                        </h3>
-                        <div class="popover-body">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div as-popper="{placement: 'right', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-secondary" popper-trigger>
-                        Popover on right
-                    </button>
-                    <div class="popover bs-popover-right" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Popover title
-                        </h3>
-                        <div class="popover-body">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div as-popper="{placement: 'bottom', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-secondary" popper-trigger>
-                        Popover on bottom
-                    </button>
-                    <div class="popover bs-popover-bottom" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Popover title
-                        </h3>
-                        <div class="popover-body">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div as-popper="{placement: 'left', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-secondary" popper-trigger>
-                        Popover on left
-                    </button>
-                    <div class="popover bs-popover-left" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Popover title
-                        </h3>
-                        <div class="popover-body">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
-                    </div>
-                </div>
-            </div>                  
-        </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <div as-popper="{placement: 'top', popover: true, click_to_close: false, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-lg btn-danger" popper-trigger>
-                        Popover that doesn't close when clicked inside
-                    </button>
-                    <div class="popover bs-popover-top" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Click inside me
-                        </h3>
-                        <div class="popover-body">
-                            <p>
-                                See? Nothing happens!
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper. Duis rutrum, est non volutpat tempus, tortor urna vulputate felis, vel luctus felis quam at justo.
-                            </p>
-                            <button type="button" class="btn btn-sm btn-secondary" on-click="@global.alert('Clicked!')">Click me!</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <pre>
-            <code class="language-html" as-code>
-            <!--
-            <style>
-                .popover[popper] {display: none;}
-                .popover[popper].show {display: block;}
-            </style>
-            -->
-            </code>
-        </pre>
 
-        <pre>
-            <code class="language-html" as-code>
-                <!--
-                <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                    <button type="button" class="btn btn-secondary" popper-trigger>
-                        Popover on top
-                    </button>
-                    <div class="popover bs-popover-top" role="tooltip" popper>
-                        <div class="arrow"></div>
-                        <h3 class="popover-header">
-                            Popover title
-                        </h3>
-                        <div class="popover-body">
-                            And here's some amazing content. It's very engaging. Right?
-                        </div>
-                    </div>
-                </div>
-                -->
-            </code>
-        </pre>
-
-        <div class="row mb-3"></div>
-
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2 class="pb-2">Options</h2>
                 <p>
@@ -455,8 +460,7 @@
             </div>
         </div>
 
-        <div class="row mb-3"></div>
-        <div class="row mb-3">
+        <div class="row mb40">
             <div class="col-sm-12">
                 <h2 class="pb-2">Changelog</h2>
 
