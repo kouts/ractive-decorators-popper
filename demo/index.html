@@ -12,6 +12,9 @@
     <!-- Bootstrap 4 CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <!-- Prism -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
+
     <!-- Custom styles -->
     <style>
         body {
@@ -30,9 +33,8 @@
             height: 1.5rem;
             vertical-align: text-top;
         }
-        .highlight {
+        :not(pre) > code[class*="language-"], pre[class*="language-"] {
             background-color: #f7f7f9;
-            padding-bottom: 1.25rem;
         }
         /* Needed for popover example */
         .popover[popper] {display: none;}
@@ -48,7 +50,7 @@
             <ul class="navbar-nav mr-auto">
                 <!--
                 <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 -->
             </ul>
@@ -134,18 +136,18 @@
                 <h4 class="pb-2">ractive-decorators-popper requires of course <a href="https://popper.js.org/" target="_blank">popper.js</a> to be present.</h4>
                 <h4 class="pb-2">ractive-decorators-popper is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveDecoratorsPopper)</h4>
                 <h5>ES2015</h5>
-<pre class="highlight">
-<code as-code>
-    npm install ractive-decorators-popper --save
-    import RactiveDecoratorsPopper from 'ractive-decorators-popper';
-</code>
-</pre>
+                <pre>
+                    <code class="language-js">
+                        npm install ractive-decorators-popper --save
+                        import RactiveDecoratorsPopper from 'ractive-decorators-popper';
+                    </code>
+                </pre>
                 <h5>Global - download the repo, extract dist/ractive-decorators-popper.min.js and include it in your page</h5>
-<pre class="highlight">
-<code>
-    &lt;script type="text/javascript" src="ractive-decorators-popper.min.js"&gt;&lt;/script&gt;
-</code>
-</pre>
+                <pre>
+                    <code class="language-html">
+                        &lt;script type="text/javascript" src="ractive-decorators-popper.min.js"&gt;&lt;/script&gt;
+                    </code>
+                </pre>
             </div>
         </div>
 
@@ -153,47 +155,47 @@
             <div class="col-sm-12">
                 <h2>Basic usage</h2>
                 <h5>Make ractive-decorators-popper available to all Ractive instances</h5>
-<pre class="highlight">
-<code as-code>
-    Ractive.decorators.popper = RactiveDecoratorsPopper;
-</code>
-</pre>
+                <pre>
+                    <code class="language-js">
+                        Ractive.decorators.popper = RactiveDecoratorsPopper;
+                    </code>
+                </pre>
 
                 <h5>or add the ractive-decorators-popper to your Ractive instance</h5>
-<pre class="highlight">
-<code as-code>
-    var ractive = new Ractive({
-        ...
-        decorators: {
-            popper: RactiveDecoratorsPopper
-        },
-        data: {
-            ...
-        }
-    });
-</code>
-</pre>
+                <pre>
+                    <code class="language-js">
+                        var ractive = new Ractive({
+                            ...
+                            decorators: {
+                                popper: RactiveDecoratorsPopper
+                            },
+                            data: {
+                                ...
+                            }
+                        });
+                    </code>
+                </pre>
 
                 <h5>then in your template</h5>
-<pre class="highlight">
-<code as-code>
-<!--
-    <div class="dropdown" as-popper="{placement: 'bottom-start'}">
-    <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
-        Primary <span class="caret"></span>
-    </button>
-    <div class="dropdown-menu" popper>
-        <a href="#" class="dropdown-item">Action</a>
-        <a href="#" class="dropdown-item">Another action</a>
-        <a href="#" class="dropdown-item">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">Separated link</a>
-        <a href="#" class="dropdown-item">Another separated link</a>
-    </div>
-</div>
--->
-</code>
-</pre>
+                <pre>
+                    <code class="language-html" as-code>
+                    <!--
+                        <div class="dropdown" as-popper="{placement: 'bottom-start'}">
+                            <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
+                                Primary <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu" popper>
+                                <a href="#" class="dropdown-item">Action</a>
+                                <a href="#" class="dropdown-item">Another action</a>
+                                <a href="#" class="dropdown-item">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">Separated link</a>
+                                <a href="#" class="dropdown-item">Another separated link</a>
+                            </div>
+                        </div>
+                    -->
+                    </code>
+                </pre>
 
                 <div class="alert alert-info" role="alert">
                     <strong>HTML structure for the decorator:</strong><br>
@@ -218,253 +220,258 @@
                         <a href="#" class="dropdown-item">Another separated link</a>
                     </div>
                 </div>
-        </div>
-    </div>
-
-
-    <div class="row mb-3"></div>
-    <div class="row mb-3">
-        <div class="col-sm-12">
-            <h2>Events</h2>
-            <p>ractive-decorators-popper raises 4 events on the <span class="badge badge-light" style="font-size: 1rem">popper</span> element - popper_before_open, popper_open, popper_before_close, popper_close</p>
-<pre class="highlight">
-<code as-code>
-    <!--
-<div class="dropdown" as-popper="{placement: 'bottom-start'}">
-    <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
-        Dropdown with events <span class="caret"></span>
-    </button>
-    <div class="dropdown-menu" 
-        popper 
-        on-popper_before_open="@global.alert('popper_before_open fired')"
-        on-popper_open="@global.alert('popper_open fired')"
-        on-popper_before_close="@global.alert('popper_before_close fired')"
-        on-popper_close="@global.alert('popper_close fired')"
-    >
-        <a href="#" class="dropdown-item">Action</a>
-        <a href="#" class="dropdown-item">Another action</a>
-        <a href="#" class="dropdown-item">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">Separated link</a>
-        <a href="#" class="dropdown-item">Another separated link</a>
-    </div>
-</div>
-    -->
-</code>
-</pre>
-            <h5>Example</h5>
-            <p>This is a popper dropdown that has all events attached</p>
-            <div class="dropdown" as-popper="{placement: 'bottom-start'}">
-                <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
-                    Dropdown with events <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu" 
-                    popper 
-                    on-popper_before_open="@global.alert('popper_before_open fired')"
-                    on-popper_open="@global.alert('popper_open fired')"
-                    on-popper_before_close="@global.alert('popper_before_close fired')"
-                    on-popper_close="@global.alert('popper_close fired')"
-                >
-                    <a href="#" class="dropdown-item">Action</a>
-                    <a href="#" class="dropdown-item">Another action</a>
-                    <a href="#" class="dropdown-item">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Separated link</a>
-                    <a href="#" class="dropdown-item">Another separated link</a>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="row mb-3"></div>
 
-    <h5>Bootstrap Popover Example</h5>
-    <div class="alert alert-info" role="alert">
-        <p class="mb-0">
-            For Bootstrap popover some additional CSS styles are needed.<br />
-            You also need to set the popover option to true and the modifiers.arrow.element to ".arrow", as shown in the example below.
-        </p>
-    </div>
-    <div class="row mb-3">
-        <div class="col">
-            <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                <button type="button" class="btn btn-secondary" popper-trigger>
-                    Popover on top
-                </button>
-                <div class="popover bs-popover-top" role="tooltip" popper>
-                    <div class="arrow"></div>
-                    <h3 class="popover-header">
-                        Popover title
-                    </h3>
-                    <div class="popover-body">
-                        And here's some amazing content. It's very engaging. Right?
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2>Events</h2>
+                <p>ractive-decorators-popper raises 4 events on the <span class="badge badge-light" style="font-size: 1rem">popper</span> element - popper_before_open, popper_open, popper_before_close, popper_close</p>
+                <pre>
+                <code class="language-html" as-code>
+                    <!--
+                    <div class="dropdown" as-popper="{placement: 'bottom-start'}">
+                        <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
+                            Dropdown with events <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu" 
+                            popper 
+                            on-popper_before_open="@global.alert('popper_before_open fired')"
+                            on-popper_open="@global.alert('popper_open fired')"
+                            on-popper_before_close="@global.alert('popper_before_close fired')"
+                            on-popper_close="@global.alert('popper_close fired')"
+                        >
+                            <a href="#" class="dropdown-item">Action</a>
+                            <a href="#" class="dropdown-item">Another action</a>
+                            <a href="#" class="dropdown-item">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Separated link</a>
+                            <a href="#" class="dropdown-item">Another separated link</a>
+                        </div>
+                    </div>
+                    -->
+                </code>
+                </pre>
+                <h5>Example</h5>
+                <p>This is a popper dropdown that has all events attached</p>
+                <div class="dropdown" as-popper="{placement: 'bottom-start'}">
+                    <button class="btn btn-primary dropdown-toggle" popper-trigger type="button">
+                        Dropdown with events <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu" 
+                        popper 
+                        on-popper_before_open="@global.alert('popper_before_open fired')"
+                        on-popper_open="@global.alert('popper_open fired')"
+                        on-popper_before_close="@global.alert('popper_before_close fired')"
+                        on-popper_close="@global.alert('popper_close fired')"
+                    >
+                        <a href="#" class="dropdown-item">Action</a>
+                        <a href="#" class="dropdown-item">Another action</a>
+                        <a href="#" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">Separated link</a>
+                        <a href="#" class="dropdown-item">Another separated link</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div as-popper="{placement: 'right', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                <button type="button" class="btn btn-secondary" popper-trigger>
-                    Popover on right
-                </button>
-                <div class="popover bs-popover-right" role="tooltip" popper>
-                    <div class="arrow"></div>
-                    <h3 class="popover-header">
-                        Popover title
-                    </h3>
-                    <div class="popover-body">
-                        And here's some amazing content. It's very engaging. Right?
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div as-popper="{placement: 'bottom', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                <button type="button" class="btn btn-secondary" popper-trigger>
-                    Popover on bottom
-                </button>
-                <div class="popover bs-popover-bottom" role="tooltip" popper>
-                    <div class="arrow"></div>
-                    <h3 class="popover-header">
-                        Popover title
-                    </h3>
-                    <div class="popover-body">
-                        And here's some amazing content. It's very engaging. Right?
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div as-popper="{placement: 'left', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-                <button type="button" class="btn btn-secondary" popper-trigger>
-                    Popover on left
-                </button>
-                <div class="popover bs-popover-left" role="tooltip" popper>
-                    <div class="arrow"></div>
-                    <h3 class="popover-header">
-                        Popover title
-                    </h3>
-                    <div class="popover-body">
-                        And here's some amazing content. It's very engaging. Right?
-                    </div>
-                </div>
-            </div>
-        </div>                  
-    </div>
+        <div class="row mb-3"></div>
 
-    <div class="row mb-3">
-        <div class="col">
-            <div as-popper="{placement: 'top', popover: true, click_to_close: false, modifiers: {arrow: {element: '.arrow'}}}">
-                <button type="button" class="btn btn-lg btn-danger" popper-trigger>
-                    Popover that doesn't close when clicked inside
-                </button>
-                <div class="popover bs-popover-top" role="tooltip" popper>
-                    <div class="arrow"></div>
-                    <h3 class="popover-header">
-                        Click inside me
-                    </h3>
-                    <div class="popover-body">
-                        <p>
-                            See? Nothing happens!
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper. Duis rutrum, est non volutpat tempus, tortor urna vulputate felis, vel luctus felis quam at justo.
-                        </p>
-                        <button type="button" class="btn btn-sm btn-secondary" on-click="@global.alert('Clicked!')">Click me!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<pre class="highlight">
-<code as-code>
-<!--
-<style>
-    .popover[popper] {display: none;}
-    .popover[popper].show {display: block;}
-</style>
-
-<div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
-    <button type="button" class="btn btn-secondary" popper-trigger>
-        Popover on top
-    </button>
-    <div class="popover bs-popover-top" role="tooltip" popper>
-        <div class="arrow"></div>
-        <h3 class="popover-header">
-            Popover title
-        </h3>
-        <div class="popover-body">
-            And here's some amazing content. It's very engaging. Right?
-        </div>
-    </div>
-</div>
--->
-</code>
-</pre>
-
-    <div class="row mb-3"></div>
-
-    <div class="row mb-3">
-        <div class="col-sm-12">
-            <h2 class="pb-2">Options</h2>
-            <p>
-                ractive-decorators-popper takes one options Object as an optional parameter.<br />
-                The options Object takes all available <a href="https://popper.js.org/popper-documentation.html#Popper.Defaults" target="_blank">popper.js</a> options and then some more.
+        <h5>Bootstrap Popover Example</h5>
+        <div class="alert alert-info" role="alert">
+            <p class="mb-0">
+                For Bootstrap popover some additional CSS styles are needed.<br />
+                You also need to set the popover option to true and the modifiers.arrow.element to ".arrow", as shown in the example below.
             </p>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Option</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>click_to_close</td>
-                        <td>Controls whether the popper element should hide by clicking inside it</td>
-                        <td>Boolean</td>
-                        <td>true</td>
-                    </tr>
-                    <tr>
-                        <td>enable_arrows</td>
-                        <td>Enables / disables navigation on dropdowns with the arrow keys</td>
-                        <td>Boolean</td>
-                        <td>true</td>
-                    </tr>
-                    <tr>
-                        <td>popover</td>
-                        <td>When set to true, some additional logic takes place in order to take care of Bootstrap position classes for popovers</td>
-                        <td>Boolean</td>
-                        <td>false</td>
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
-    </div>
-
-
-    <div class="row mb-3"></div>
-    <div class="row mb-3">
-        <div class="col-sm-12">
-            <h2 class="pb-2">Changelog</h2>
-
-            <h5>version 1.0.0</h5>
-            <ul>
-                <li>Initial release</li>
-            </ul>
-
+        <div class="row mb-3">
+            <div class="col">
+                <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-secondary" popper-trigger>
+                        Popover on top
+                    </button>
+                    <div class="popover bs-popover-top" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Popover title
+                        </h3>
+                        <div class="popover-body">
+                            And here's some amazing content. It's very engaging. Right?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div as-popper="{placement: 'right', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-secondary" popper-trigger>
+                        Popover on right
+                    </button>
+                    <div class="popover bs-popover-right" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Popover title
+                        </h3>
+                        <div class="popover-body">
+                            And here's some amazing content. It's very engaging. Right?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div as-popper="{placement: 'bottom', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-secondary" popper-trigger>
+                        Popover on bottom
+                    </button>
+                    <div class="popover bs-popover-bottom" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Popover title
+                        </h3>
+                        <div class="popover-body">
+                            And here's some amazing content. It's very engaging. Right?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div as-popper="{placement: 'left', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-secondary" popper-trigger>
+                        Popover on left
+                    </button>
+                    <div class="popover bs-popover-left" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Popover title
+                        </h3>
+                        <div class="popover-body">
+                            And here's some amazing content. It's very engaging. Right?
+                        </div>
+                    </div>
+                </div>
+            </div>                  
         </div>
-    </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <div as-popper="{placement: 'top', popover: true, click_to_close: false, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-lg btn-danger" popper-trigger>
+                        Popover that doesn't close when clicked inside
+                    </button>
+                    <div class="popover bs-popover-top" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Click inside me
+                        </h3>
+                        <div class="popover-body">
+                            <p>
+                                See? Nothing happens!
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt rutrum magna sit amet ullamcorper. Duis rutrum, est non volutpat tempus, tortor urna vulputate felis, vel luctus felis quam at justo.
+                            </p>
+                            <button type="button" class="btn btn-sm btn-secondary" on-click="@global.alert('Clicked!')">Click me!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <pre>
+            <code class="language-html" as-code>
+            <!--
+            <style>
+                .popover[popper] {display: none;}
+                .popover[popper].show {display: block;}
+            </style>
+            -->
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-html" as-code>
+                <!--
+                <div as-popper="{placement: 'top', popover: true, modifiers: {arrow: {element: '.arrow'}}}">
+                    <button type="button" class="btn btn-secondary" popper-trigger>
+                        Popover on top
+                    </button>
+                    <div class="popover bs-popover-top" role="tooltip" popper>
+                        <div class="arrow"></div>
+                        <h3 class="popover-header">
+                            Popover title
+                        </h3>
+                        <div class="popover-body">
+                            And here's some amazing content. It's very engaging. Right?
+                        </div>
+                    </div>
+                </div>
+                -->
+            </code>
+        </pre>
+
+        <div class="row mb-3"></div>
+
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Options</h2>
+                <p>
+                    ractive-decorators-popper takes one options Object as an optional parameter.<br />
+                    The options Object takes all available <a href="https://popper.js.org/popper-documentation.html#Popper.Defaults" target="_blank">popper.js</a> options and then some more.
+                </p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>click_to_close</td>
+                            <td>Controls whether the popper element should hide by clicking inside it</td>
+                            <td>Boolean</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>enable_arrows</td>
+                            <td>Enables / disables navigation on dropdowns with the arrow keys</td>
+                            <td>Boolean</td>
+                            <td>true</td>
+                        </tr>
+                        <tr>
+                            <td>popover</td>
+                            <td>When set to true, some additional logic takes place in order to take care of Bootstrap position classes for popovers</td>
+                            <td>Boolean</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="row mb-3"></div>
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <h2 class="pb-2">Changelog</h2>
+
+                <h5>version 1.0.0</h5>
+                <ul>
+                    <li>Initial release</li>
+                </ul>
+
+            </div>
+        </div>
 
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
     <script src="https://unpkg.com/popper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src="../dist/ractive-decorators-popper.js"></script>
@@ -483,21 +490,20 @@
             return arr;
         };
 
-        function esc(string){
-            var entityMap = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;', "'": '&#39;', "/": '&#x2F;'};
-            return String(string).replace(/[&<>"'\/]/g, function(s){
-                return entityMap[s];
-            });
-        }
-
         Ractive.decorators.code = function(node){
             var comments = findComments(node);
             for (var i = 0; i < comments.length; i++) {
-                var temp = document.createElement('div');
-                temp.classList.add('code-comment');
-                temp.innerHTML = esc(comments[i].nodeValue).replace(/^\s+|\s+$/g, '');
-                node.replaceChild(temp, comments[i]);
+                node.appendChild(document.createTextNode(comments[i].nodeValue));
             };
+            Prism.highlightElement(node);
+            return {
+                teardown: function(){
+                }
+            }        
+        }
+
+        Ractive.decorators.prism = function(node){
+            Prism.highlightElement(node);
             return {
                 teardown: function(){
                 }
@@ -511,6 +517,9 @@
             target: '#app',
             template: '#app-template',
             data: {
+            },
+            oncomplete: function(){
+                Prism.highlightAll();
             }
         });
     </script>
