@@ -136,9 +136,6 @@
         <div class="row mb40">
             <div class="col-sm-12">
                 <h2>Install</h2>
-                <h5 class="pb-2">
-                    ractive-decorators-popper requires <a href="https://github.com/FezVrasta/popper.js#installation" target="_blank">popper.js</a> to be installed first.
-                </h5>
                 <h4 class="pb-2">ractive-decorators-popper is a UMD module so you can use it as an ES2015, AMD, CommonJS module or a global (RactiveDecoratorsPopper)</h4>
                 <h5>ES2015</h5>
                 <pre>
@@ -148,8 +145,12 @@
                     </code>
                 </pre>
                 <h5>Global - download the repo, extract dist/ractive-decorators-popper.min.js and include it in your page</h5>
+                <p>
+                    Note that ractive-decorators-popper requires <a href="https://github.com/FezVrasta/popper.js#installation" target="_blank">popper.js</a> to be included first.
+                </p>
                 <pre>
                     <code class="language-html">
+                        &lt;script type="text/javascript" src="https://unpkg.com/popper.js"&gt;&lt;/script&gt;
                         &lt;script type="text/javascript" src="ractive-decorators-popper.min.js"&gt;&lt;/script&gt;
                     </code>
                 </pre>
