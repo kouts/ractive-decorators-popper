@@ -28,8 +28,8 @@ function popper_decorator(el, options) {
     if(options.popover === true){
         let placement = undefined;
         options.onCreate = function(data){
-            data.instance.popper.classList.remove('bs-popover-'+data.originalPlacement);
-            data.instance.popper.classList.add('bs-popover-'+data.placement);
+            data.instance.popper.classList.remove('bs-popover-'+data.originalPlacement.split('-')[0]);
+            data.instance.popper.classList.add('bs-popover-'+data.placement.split('-')[0]);
         }
         options.onUpdate = function(data){
             if(!placement){
@@ -37,8 +37,8 @@ function popper_decorator(el, options) {
             }
             if(placement != data.placement){
                 // console.log('placement changed');
-                data.instance.popper.classList.remove('bs-popover-'+placement);
-                data.instance.popper.classList.add('bs-popover-'+data.placement);
+                data.instance.popper.classList.remove('bs-popover-'+placement.split('-')[0]);
+                data.instance.popper.classList.add('bs-popover-'+data.placement.split('-')[0]);
                 placement = data.placement;
             }
         }
