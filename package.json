@@ -1,7 +1,7 @@
 {
   "//": "To use type: npm run watch",
   "name": "ractive-decorators-popper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A popper.js decorator for Ractive",
   "main": "dist/ractive-decorators-popper.js",
   "repository": "https://github.com/kouts/ractive-decorators-popper",
